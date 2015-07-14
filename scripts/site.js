@@ -27,7 +27,7 @@ personasApp.controller('AppController', ['$scope', function($scope) {
         "http://www.placecage.com/c/500/500",
         "http://www.placecage.com/g/500/500",
         "http://www.placecage.com/500/500",
-        "/images/bledsoe.jpg"
+        "images/bledsoe.jpg"
     ]
 }]);
 
@@ -87,9 +87,9 @@ personasApp.directive('deviceUsage', function() {
         `,
         link: function(scope, element, attributes) {
             scope.deviceImages = [
-                "/images/phone.svg",
-                "/images/tablet.svg",
-                "/images/laptop.svg"
+                "images/phone.svg",
+                "images/tablet.svg",
+                "images/laptop.svg"
             ]
 
             scope.addDevice = function() {
