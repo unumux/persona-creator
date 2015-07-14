@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="personasApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="styles/site.min.css">
+</head>
+<body ng-controller="AppController">
+    <main class="c-main">
+        <div class="c-configuration">
+            <h2 class="c-configuration__label c-configuration__label--big">Image</h2>
+            <image-select class="c-configuration__face" images="faces" ng-model="selectedFace"></image-select>
+
+            <label class="c-configuration__label c-configuration__label--big" for="name">Name</label>
+            <input class="c-configuration__input" type="text" id="name" ng-model="name">
+
+            <h2 class="c-configuration__label c-configuration__label--big">Demographic</h2>
+
+            <div class="c-configuration__fieldset">
+                <label class="c-configuration__label c-configuration__label" for="age">Age</label>
+                <input class="c-configuration__input" type="text" id="age" ng-model="age">
+                <label class="c-configuration__label c-configuration__label" for="name">Gender</label>
+                <div class="c-configuration__input">
+                    <input class="c-configuration__input c-configuration__input--radio" type="radio" id="male" ng-model="gender" value="Male"><label for="male" class="c-configuration__label c-configuration__label--radio">Male</label>
+                    <input class="c-configuration__input c-configuration__input--radio" type="radio" id="female" ng-model="gender" value="Female"><label for="female" class="c-configuration__label c-configuration__label--radio">Female</label>
+                </div>
+                <label class="c-configuration__label c-configuration__label" for="role">Role</label>
+                <input class="c-configuration__input" type="text" id="role" ng-model="role">
+                <label class="c-configuration__label c-configuration__label" for="education">Education</label>
+                <input class="c-configuration__input" type="text" id="education" ng-model="education">
+                <label class="c-configuration__label c-configuration__label" for="location">Location</label>
+                <input class="c-configuration__input" type="text" id="location" ng-model="location">
+            </div>
+
+            <label class="c-configuration__label c-configuration__label--big" for="about">About</label>
+            <textarea name="about" id="about" ng-model="about" cols="30" rows="5" class="c-configuration__input"></textarea>
+
+            <label class="c-configuration__label c-configuration__label--big" for="about">Body</label>
+            <div class="c-configuration__fieldset">
+                <label class="c-configuration__label c-configuration__label" for="trying-to-do">What am I trying to do?</label>
+                <textarea name="trying-to-do" id="trying-to-do" ng-model="tryingToDo" cols="30" rows="5" class="c-configuration__input"></textarea>
+                <label class="c-configuration__label c-configuration__label" for="why-am-i-trying">Why am I trying to do this?</label>
+                <textarea name="why-am-i-trying" id="why-am-i-trying" ng-model="whyAmITrying" cols="30" rows="5" class="c-configuration__input"></textarea>
+                <label class="c-configuration__label c-configuration__label" for="what-do-i-need">What do I need to be successful?</label>
+                <textarea name="what-do-i-need" id="what-do-i-need" ng-model="whatDoINeed" cols="30" rows="5" class="c-configuration__input"></textarea>
+                <label class="c-configuration__label c-configuration__label" for="when-do-i-want">When do I want to do this?</label>
+                <textarea name="when-do-i-want" id="when-do-i-want" ng-model="whenDoIWant" cols="30" rows="5" class="c-configuration__input"></textarea>
+            </div>
+
+            <device-usage devices="devices"></device-usage>
+            <label class="c-configuration__label c-configuration__label--big" for="site-usage">Site Usage</label>
+            <textarea name="site-usage" id="site-usage" ng-model="siteUsage" cols="30" rows="5" class="c-configuration__input"></textarea>
+            <label class="c-configuration__label c-configuration__label--big" for="tech-understanding">Tech Understanding</label>
+            <input type="range" id="tech-understanding" class="c-configuration__input" min="0" max="100" ng-model="techUnderstanding">
+        </div>
+        <div class="c-preview">
+            <div class="c-preview-sidebar">
+                <img src="{{selectedFace}}" alt="" class="c-preview-sidebar__face">
+                <div class="c-preview-sidebar__content">
+                    <h2 class="c-preview-sidebar__section-heading">Demographic</h2>
+                    <table class="c-preview-sidebar__demographics">
+                        <tr>
+                            <td class="c-preview-sidebar__key">Age:</td>
+                            <td class="c-preview-sidebar__value">{{age | inWords | capFirstLetter}}</td>
+                        </tr>
+                        <tr>
+                            <td class="c-preview-sidebar__key">Gender:</td>
+                            <td class="c-preview-sidebar__value">{{gender}}</td>
+                        </tr>
+                        <tr>
+                            <td class="c-preview-sidebar__key">Role:</td>
+                            <td class="c-preview-sidebar__value">{{role}}</td>
+                        </tr>
+                        <tr>
+                            <td class="c-preview-sidebar__key">Education:</td>
+                            <td class="c-preview-sidebar__value">{{education}}</td>
+                        </tr>
+                        <tr>
+                            <td class="c-preview-sidebar__key">Location:</td>
+                            <td class="c-preview-sidebar__value">{{location}}</td>
+                        </tr>
+                    </table>
+
+                    <h2 class="c-preview-sidebar__section-heading">About</h2>
+                    <div class="c-preview-sidebar__about" ng-bind-html="about | nl2p"></div>
+                </div>
+            </div>
+            <div class="c-preview__main">
+                <h1 class="c-preview__name">{{name}}</h1>
+
+                <section class="c-preview__question-section">
+                    <h3 class="c-preview__question">What am I trying to do?</h3>
+                    <div class="c-preview__answer" ng-bind-html="tryingToDo | nl2p"></div>
+                </section>
+                <section class="c-preview__question-section">
+                    <h3 class="c-preview__question">Why am I trying to do this</h3>
+                    <div class="c-preview__answer" ng-bind-html="whyAmITrying | nl2p"></div>
+                </section>
+                <section class="c-preview__question-section">
+                    <h3 class="c-preview__question">What do I need to be successful?</h3>
+                    <div class="c-preview__answer" ng-bind-html="whatDoINeed | nl2p"></div>
+                </section>
+                <section class="c-preview__question-section">
+                    <h3 class="c-preview__question">When do I want to do this?</h3>
+                    <div class="c-preview__answer" ng-bind-html="whenDoIWant | nl2p"></div>
+                </section>
+
+                <section class="c-tech-usage">
+                    <h4 class="c-tech-usage__title">Tech Usage</h4>
+                    <div class="c-tech-usage__devices-and-usage">
+                        <div class="c-tech-usage__devices">
+                            <h5 class="c-tech-usage__heading">Devices</h5>
+                            <ul class="c-tech-usage__devices-list">
+                                <li class="c-tech-usage__device" ng-repeat="device in devices">
+                                    <img class="c-tech-usage__device-image" src="{{device.image}}" alt="">
+                                    <div class="c-tech-usage__device-name">{{device.name}}</div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="c-tech-usage__site-usage">
+                            <h5 class="c-tech-usage__heading">Site Usage</h5>
+                            <ul class="c-tech-usage__site-list" ng-bind-html="siteUsage | nl2li"></ul>
+                        </div>
+                    </div>
+                    <div class="c-tech-understanding">
+                        <h5 class="c-tech-usage__heading">Tech Understanding</h5>
+                        <div class="c-tech-understanding__outer">
+                            <div class="c-tech-understanding__inner" style="width: {{techUnderstanding}}%"></div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+    <script src="scripts/site.min.js"></script>
+</body>
+</html>
