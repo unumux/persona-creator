@@ -1,0 +1,8 @@
+{
+  "private": true,
+  "name": "new_persona_builder",
+  "dependencies": {
+    "colonial-branding": "unumux/colonial-branding#^3.1.0",
+    "jquery": "^2.2.1"
+  }
+}
