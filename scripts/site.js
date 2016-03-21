@@ -92,6 +92,7 @@ personasApp.controller('AppController', ['$scope', function($scope) {
     $scope.isViewing = false;
     $scope.personaPhotos = personaPhotos;
     $scope.personaData = angular.copy(defaultPersonaData);
+    $scope.personaFor = "";
 
     $scope.toggleClass = function(className) {
         $scope.className = $scope.className === "" ? className : "";
@@ -117,6 +118,11 @@ personasApp.controller('AppController', ['$scope', function($scope) {
 	}
 
     $scope.printPersona = function() {
+        if ($scope.personaData.name)
+        {
+            document.title = document.title + " for " + $scope.personaData.name;
+        }
+
         window.print();
     }
 }]);
