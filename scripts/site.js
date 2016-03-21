@@ -17,9 +17,9 @@ selectedDevices : {
     "Fax":false
 },
 maxCharacterCounts: {
-    "about": 700,
+    "about": 500,
     "quote": 150,
-    "questions": 500
+    "questions": 300
 },
 techUnderstanding:0,
 changeComfort:0,
