@@ -118,9 +118,14 @@ personasApp.controller('AppController', ['$scope', function($scope) {
 	}
 
     $scope.printPersona = function() {
-        if ($scope.personaData.name)
+        var title = document.title;
+        var name = $scope.personaData.name;
+        var n = title.indexOf('for');
+        title = title.substring(0, n != -1 ? n : title.length);
+
+        if (name)
         {
-            document.title = document.title + " for " + $scope.personaData.name;
+            document.title = title + " for " + name;
         }
 
         window.print();
