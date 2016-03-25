@@ -154,6 +154,7 @@ button {
 .persona-controls-container,
 .persona-display-container {
     overflow: auto;
+    -webkit-overflow-scrolling: touch;
 
     -webkit-transition: transform .3s linear;
     transition: transform .3s linear;
