@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1">
-    <title>Enterprise User Experience : Persona {{}}</title>
+    <title>Enterprise User Experience : Persona {{personaFor}}</title>
     <link rel="stylesheet" href="styles/site.min.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet" type="text/css">
 </head>
 <body ng-controller="AppController as ctrl">
     <header>
-    main header...
     </header>
     <main>
     <section class="persona-controls-container">
@@ -62,13 +61,13 @@
                 </ul>
             </div>
             <h3 class="about">About
-                <span>Character Limit: {{personaData.maxCharacterCounts.about-personaData.about.length}}</span>
+                <span class="character-limit-container">Character Limit: {{personaData.maxCharacterCounts.about-personaData.about.length}}</span>
             </h3>
 
             <textarea ng-model="personaData.about" maxlength="{{personaData.maxCharacterCounts.about}}" ng-trim="false"></textarea>
 
             <h3 class="quote">Quote
-                <span>Character Limit: {{personaData.maxCharacterCounts.quote-personaData.quote.length}}</span>
+                <span class="character-limit-container">Character Limit: {{personaData.maxCharacterCounts.quote-personaData.quote.length}}</span>
             </h3>
             <textarea ng-model="personaData.quote" maxlength="{{personaData.maxCharacterCounts.quote}}" ng-trim="false"></textarea>
         </section>
@@ -76,16 +75,16 @@
         <section class="questions">
             <h2>Step 2: Answer some questions on how your persona intends to use your new product or service.</h2>
             <persona-question ng-model="personaData.questions.q1" default-question-text="What am I trying to do?"></persona-question>
-            <span>Character Limit: {{personaData.maxCharacterCounts.questions-personaData.answers.a1.length}}</span>
+            <span class="character-limit-container">Character Limit: {{personaData.maxCharacterCounts.questions-personaData.answers.a1.length}}</span>
             <textarea ng-model="personaData.answers.a1" maxlength="{{personaData.maxCharacterCounts.questions}}" ng-trim="false"></textarea>
             <persona-question ng-model="personaData.questions.q2" default-question-text="Why am I trying to do this?"></persona-question>
-            <span>Character Limit: {{personaData.maxCharacterCounts.questions-personaData.answers.a2.length}}</span>
+            <span class="character-limit-container">Character Limit: {{personaData.maxCharacterCounts.questions-personaData.answers.a2.length}}</span>
             <textarea ng-model="personaData.answers.a2" maxlength="{{personaData.maxCharacterCounts.questions}}" ng-trim="false"></textarea>
             <persona-question ng-model="personaData.questions.q3" default-question-text="What do I need to be successful?"></persona-question>
-            <span>Character Limit: {{personaData.maxCharacterCounts.questions-personaData.answers.a3.length}}</span>
+            <span class="character-limit-container">Character Limit: {{personaData.maxCharacterCounts.questions-personaData.answers.a3.length}}</span>
             <textarea ng-model="personaData.answers.a3" maxlength="{{personaData.maxCharacterCounts.questions}}" ng-trim="false"></textarea>
             <persona-question ng-model="personaData.questions.q4" default-question-text="When do I want to do this?"></persona-question>
-            <span>Character Limit: {{personaData.maxCharacterCounts.questions-personaData.answers.a4.length}}</span>
+            <span class="character-limit-container">Character Limit: {{personaData.maxCharacterCounts.questions-personaData.answers.a4.length}}</span>
             <textarea ng-model="personaData.answers.a4" maxlength="{{personaData.maxCharacterCounts.questions}}" ng-trim="false"></textarea>
         </section>
 
@@ -205,9 +204,9 @@
     </main>
 <footer>
     <button class="reset" ng-click="resetPersona()" ng-if="!isViewing">Reset</button>
-    <button class="generate" ng-click="toggleClass('move'); togglePersonaView(); getRandomImage()" ng-if="!isViewing">Generate</button>
+    <button class="generate right" ng-click="toggleClass('move'); togglePersonaView(); getRandomImage()" ng-if="!isViewing">Generate Persona</button>
     <button class="edit" ng-click="toggleClass(); togglePersonaView()" ng-if="isViewing">Edit</button>
-    <button class="print html" ng-click="printPersona()" ng-if="isViewing">Print</button>
+    <button class="print html right" ng-click="printPersona()" ng-if="isViewing">Print</button>
 </footer>
 
 

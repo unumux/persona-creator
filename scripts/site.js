@@ -17,9 +17,9 @@ selectedDevices : {
     "Fax":false
 },
 maxCharacterCounts: {
-    "about": 700,
+    "about": 500,
     "quote": 150,
-    "questions": 500
+    "questions": 300
 },
 techUnderstanding:0,
 changeComfort:0,
@@ -92,6 +92,7 @@ personasApp.controller('AppController', ['$scope', function($scope) {
     $scope.isViewing = false;
     $scope.personaPhotos = personaPhotos;
     $scope.personaData = angular.copy(defaultPersonaData);
+    $scope.personaFor = "";
 
     $scope.toggleClass = function(className) {
         $scope.className = $scope.className === "" ? className : "";
@@ -117,6 +118,16 @@ personasApp.controller('AppController', ['$scope', function($scope) {
 	}
 
     $scope.printPersona = function() {
+        var title = document.title;
+        var name = $scope.personaData.name;
+        var n = title.indexOf('for');
+        title = title.substring(0, n != -1 ? n : title.length);
+
+        if (name)
+        {
+            document.title = title + " for " + name;
+        }
+
         window.print();
     }
 }]);
