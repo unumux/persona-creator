@@ -6,12 +6,14 @@
 
 // Constants //
 
-$breakpoint: 1024px;
+$breakpoint-mobile: 768px;
+$breakpoint-tablet: 1024px;
 $font-family: 'Source Sans Pro', sans-serif;
+$font-size: 18px;
 $font-color: #4a4a4a;
 $header-footer-bgcolor: #1f3340;
 $controls-container-bgcolor: rgba(216, 216, 216, .2);
-$header-footer-height: 100px;
+$header-footer-height: 75px;
 $section-heading-font-size: 18px;
 $section-heading-font-color: #fff;
 $selected-device-highlight: rgba(216,216,216,.3);
@@ -22,6 +24,7 @@ $tech-graph-bar-color: #f1c44f;
 $tech-graph-stripe-color: rgba(241,196,79,.8);
 $change-graph-bar-color: #d0d573;
 $change-graph-stripe-color: rgba(208,213,115,.8);
+$text-area-max-height: 100px;
 
 // Elements //
 
@@ -37,20 +40,18 @@ body {
 
     -webkit-print-color-adjust: exact;
     font-family: $font-family;
+    font-size: $font-size;
 
-    > header,
+     .persona-controls-container > header,
+     .persona-display-container > header,
     > footer {
         background-color: $header-footer-bgcolor;
-        color: black;
         padding: 15px 20px;
         height: $header-footer-height;
 
-        @media(min-device-width: $breakpoint) {
+        @media(min-device-width: $breakpoint-tablet) {
             padding-left: 15%;
             padding-right: 15%;
-            position: fixed;
-            width: 100%;
-            z-index: 10;
         }
 
         @media print {
@@ -58,12 +59,14 @@ body {
         }
     }
 
-    > header {
-        top: 0;
-    }
-
     > footer {
-        bottom: 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            z-index: 10;
+            @media(min-device-width: $breakpoint-mobile) {
+                height: calc(#{$header-footer-height} + 25px);
+            }
     }
 }
 
@@ -72,10 +75,8 @@ main {
     overflow-y: hidden;
     height: 100%;
     position: relative;
+    padding-bottom: $header-footer-height;
 
-    @media(min-device-width: $breakpoint) {
-        padding: $header-footer-height 0;
-    }
     @media print {
         padding: 0;
     }
@@ -87,6 +88,10 @@ ul {
     margin: 0;
 }
 
+label {
+    font-weight: 600;
+}
+
 textarea,
 input,
 .device-options
@@ -96,13 +101,22 @@ input,
     box-shadow: inset 0 1px 6px 0 rgba(172, 172, 172, 0.5);
 }
 
+textarea {
+    min-height: $text-area-max-height;
+}
+
 button {
     border: 0;
     border-radius: 5px;
     color: #fff;
-    font-size: 24px;
     padding: 12px 25px;
     text-transform: capitalize;
+    padding: 6px 24px;
+
+    @media(min-device-width: $breakpoint-mobile) {
+        font-size: 24px;
+        padding: 12px 25px;
+    }
 
     &.right {
         float: right;
@@ -120,13 +134,14 @@ button {
 }
 
 // Classes //
-//@media screen and (min-device-width: $breakpoint), print {
+@media screen and (min-device-width: $breakpoint-mobile), print {
 
     .flex-row, .flex-column {
         display: flex;
          justify-content: space-between;
+         flex-wrap: wrap;
         align-content: flex-start;
-    	align-items: stretch;
+        align-items: stretch;
 
     	> * {
             margin: 5px 5px 5px 0;
@@ -149,7 +164,7 @@ button {
     		width: 100%;
     	}
     }
-//}
+}
 
 .persona-controls-container,
 .persona-display-container {
@@ -161,8 +176,12 @@ button {
     transform: translate3d(0,0,0);
 
 
-    @media(min-device-width: $breakpoint) {
+    @media(min-device-width: $breakpoint-tablet) {
         padding: 0 15%;
+
+        > header {
+            margin: 0 -21.4%;
+        }
     }
 
     @media print {
@@ -177,7 +196,7 @@ button {
 
         padding: 10px;
 
-        @media(min-device-width: $breakpoint) {
+        @media(min-device-width: $breakpoint-tablet) {
             padding: 1px 35px;
         }
     }
@@ -198,18 +217,18 @@ button {
         margin-bottom: 0;
         padding-top: 10px;
 
-        @media(min-device-width: $breakpoint) {
+        @media(min-device-width: $breakpoint-tablet) {
             text-align: center;
         }
     }
 
-    .card {
-            @media(min-device-width: $breakpoint) {
-                &:not(:last-child) {
-                    border-right: 2px solid #979797;
-                }
+    @media(min-device-width: $breakpoint-mobile){
+        .card {
+            &:not(:last-child) {
+                border-right: 2px solid #979797;
             }
         }
+    }
 
     .sites-used {
         ul {
@@ -221,12 +240,29 @@ button {
             width: 100%;
         }
     }
+
+    .graph {
+        span {
+            font-size: 12px;
+            vertical-align: top;
+        }
+
+        span + span {
+            float: right;
+        }
+    }
 }
 
 .persona-display-container  {
     background-color: #fff;
-    padding-left: 65px;
-    padding-right: 65px;
+    padding-left:10px;
+    padding-right:10px;
+
+    @media(min-device-width: $breakpoint-mobile) {
+        padding-left: 65px;
+        padding-right: 65px;
+    }
+
 
     h2, h3 {
         color: $font-color;
@@ -240,6 +276,12 @@ button {
         }
     }
 
+    @media screen and (min-device-width: $breakpoint-mobile) {
+        > .flex-row {
+            flex-direction: column;
+        }
+    }
+
     .card {
         background-color: $card-bgcolor !important;;
         border-radius: 5px;
@@ -250,7 +292,7 @@ button {
             }
         }
 
-        @media screen and (min-device-width: $breakpoint), print {
+        @media screen and (min-device-width: $breakpoint-tablet), print {
             &:not(:last-child) {
                 margin-right: 15px;
             }
@@ -274,6 +316,12 @@ button {
     .tech-info {
         @media screen {
             border-top: 2px solid #4a4a4a;
+        }
+
+        @media screen and (max-device-width: $breakpoint-mobile) {
+            .graph {
+                flex: 1 1 100%;
+            }
         }
     }
 }
@@ -354,10 +402,13 @@ button {
     }
 
     label {
+        cursor: pointer;
         &:after {
             content: "< Click to edit.";
             display: inline-block;
             margin-left: 15px;
+            opacity: 0.4;
+            font-weight: normal;
         }
     }
 }
@@ -382,15 +433,19 @@ button {
     }
 }
 
-.flex-print {
-    margin-right: 30px;
+@media(min-device-width: $breakpoint-tablet) {
+    .flex-print {
+        margin-right: 30px;
+    }
 }
 
 .persona-profile {
 
 	background-color: $card-bgcolor !important;
 	border-radius: 5px;
-    max-width: 575px;
+    @media(min-device-width: $breakpoint-tablet) {
+        max-width: 575px;
+    }
 
     @media print {
         &:before {

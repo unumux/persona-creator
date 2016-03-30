@@ -8,10 +8,10 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet" type="text/css">
 </head>
 <body ng-controller="AppController as ctrl">
-    <header>
-    </header>
     <main>
     <section class="persona-controls-container">
+        <header>
+        </header>
         <p>You’ve read about the importance of being courageous, rebellious and imaginative. These are all vital ingredients in an effective advertising campaign. However, they must be tempered with the most important ingredient of all.</p>
         <section class="personal-info">
             <h2>Step 1: Give your persona some personality!</h2>
@@ -112,8 +112,16 @@
                 <div class="card graph">
                     <p>What is the comfort level of your user with technology?</p>
                     <input type="range" id="techUnderstanding" min="0" max="100" ng-model="personaData.techUnderstanding">
+                    <div>
+                        <span>Afraid</span>
+                        <span>Confident</span>
+                    </div>
                     <p>What is the comfort level of your user with change?</p>
                     <input type="range" id="changeComfort" min="0" max="100" ng-model="personaData.changeComfort">
+                    <div>
+                        <span>Hate change</span>
+                        <span>Embraces change</span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -121,7 +129,6 @@
 
 
     <section class="persona-display-container" ng-class="className">
-
     <section class="flex-row">
         <div class="flex-print">
             <h2 class="persona-name">{{personaData.name}}</h2>
