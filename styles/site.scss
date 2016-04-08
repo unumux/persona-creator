@@ -68,6 +68,12 @@ body {
                 height: calc(#{$header-footer-height} + 25px);
             }
     }
+
+    @media(min-width: $breakpoint-mobile) {
+        input[type='text']:focus ~ footer {
+            background-color: red;
+        }
+    }
 }
 
 main {
@@ -606,6 +612,8 @@ button {
   }
 }
 
+
+
 //  Slider Component //
 
 $range-handle-height: 32px;
@@ -696,13 +704,13 @@ input[type=range]::-webkit-slider-runnable-track {
 }
 
 input[type=range]::-webkit-slider-thumb {
-    height: calc(#{$range-handle-height} * 2);
-    width: calc(#{$range-handle-width} * 2);
+    height: $range-handle-height;
+    width: $range-handle-width;
     border-radius: $range-handle-border-radius;
     background: #f5a623;
     cursor: pointer;
     -webkit-appearance: none;
-    margin-top: calc(#{$webkit-handle-top-offset} * 2 - 3px);
+    margin-top: $webkit-handle-top-offset;
 }
 
 @media(min-width: $breakpoint-mobile) {
