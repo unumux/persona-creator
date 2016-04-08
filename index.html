@@ -10,8 +10,7 @@
 <body ng-controller="AppController as ctrl">
     <main>
     <section class="persona-controls-container">
-        <header>
-        </header>
+        <header></header>
         <p>You’ve read about the importance of being courageous, rebellious and imaginative. These are all vital ingredients in an effective advertising campaign. However, they must be tempered with the most important ingredient of all.</p>
         <section class="personal-info">
             <h2>Step 1: Give your persona some personality!</h2>
@@ -76,23 +75,23 @@
             <h2>Step 2: Answer some questions on how your persona intends to use your new product or service.</h2>
             <persona-question ng-model="personaData.questions.q1" default-question-text="What am I trying to do?"></persona-question>
             <span class="character-limit-container">Character Limit: {{personaData.maxCharacterCounts.questions-personaData.answers.a1.length}}</span>
-            <textarea ng-model="personaData.answers.a1" maxlength="{{personaData.maxCharacterCounts.questions}}" ng-trim="false"></textarea>
+            <textarea ng-model="personaData.answers.a1" maxlength="{{personaData.maxCharacterCounts.questions}}" ng-trim="false" placeholder="What is the user trying to accomplish?"></textarea>
             <persona-question ng-model="personaData.questions.q2" default-question-text="Why am I trying to do this?"></persona-question>
             <span class="character-limit-container">Character Limit: {{personaData.maxCharacterCounts.questions-personaData.answers.a2.length}}</span>
-            <textarea ng-model="personaData.answers.a2" maxlength="{{personaData.maxCharacterCounts.questions}}" ng-trim="false"></textarea>
+            <textarea ng-model="personaData.answers.a2" maxlength="{{personaData.maxCharacterCounts.questions}}" ng-trim="false" placeholder="What user needs and business requirements are being addressed with the user?"></textarea>
             <persona-question ng-model="personaData.questions.q3" default-question-text="What do I need to be successful?"></persona-question>
             <span class="character-limit-container">Character Limit: {{personaData.maxCharacterCounts.questions-personaData.answers.a3.length}}</span>
-            <textarea ng-model="personaData.answers.a3" maxlength="{{personaData.maxCharacterCounts.questions}}" ng-trim="false"></textarea>
+            <textarea ng-model="personaData.answers.a3" maxlength="{{personaData.maxCharacterCounts.questions}}" ng-trim="false" placeholder="How will the user measure their success?"></textarea>
             <persona-question ng-model="personaData.questions.q4" default-question-text="When do I want to do this?"></persona-question>
             <span class="character-limit-container">Character Limit: {{personaData.maxCharacterCounts.questions-personaData.answers.a4.length}}</span>
-            <textarea ng-model="personaData.answers.a4" maxlength="{{personaData.maxCharacterCounts.questions}}" ng-trim="false"></textarea>
+            <textarea ng-model="personaData.answers.a4" maxlength="{{personaData.maxCharacterCounts.questions}}" ng-trim="false" placeholder="When does the user need to use this or be informed about this?"></textarea>
         </section>
 
         <section class="tech-info">
             <h2>Step 3: Answer some questions about your persona’s technical abilities.</h2>
             <div class="flex-row">
                 <div class="card technology-used">
-                    <header>What device(s) do your users perform their work on?</header>
+                    <header>What device(s) do your users perform their work on? (Select all that apply.)</header>
                     <ul class="device-options">
                         <li ng-repeat="(device, val) in personaData.selectedDevices">
                             <input type="checkbox" id="device{{$index}}" ng-model="personaData.selectedDevices[device]" >
@@ -103,25 +102,30 @@
                 <div class="card sites-used">
                     <header>What site(s) do your users go to during a typical workday?</header>
                     <ul>
-                        <li><input type="text" id="sitesUsed1" ng-model="personaData.sitesUsed.site1"></li>
-                        <li><input type="text" id="sitesUsed2" ng-model="personaData.sitesUsed.site2"></li>
-                        <li><input type="text" id="sitesUsed3" ng-model="personaData.sitesUsed.site3"></li>
-                        <li><input type="text" id="sitesUsed4" ng-model="personaData.sitesUsed.site4"></li>
+                        <li><input type="text" id="sitesUsed1" ng-model="personaData.sitesUsed.site1" maxlength="30"></li>
+                        <li><input type="text" id="sitesUsed2" ng-model="personaData.sitesUsed.site2" maxlength="30"></li>
+                        <li><input type="text" id="sitesUsed3" ng-model="personaData.sitesUsed.site3" maxlength="30"></li>
+                        <li><input type="text" id="sitesUsed4" ng-model="personaData.sitesUsed.site4" maxlength="30"></li>
                     </ul>
                 </div>
                 <div class="card graph">
-                    <p>What is the comfort level of your user with technology?</p>
-                    <input type="range" id="techUnderstanding" min="0" max="100" ng-model="personaData.techUnderstanding">
-                    <div>
-                        <span>Afraid</span>
-                        <span>Confident</span>
-                    </div>
-                    <p>What is the comfort level of your user with change?</p>
-                    <input type="range" id="changeComfort" min="0" max="100" ng-model="personaData.changeComfort">
-                    <div>
-                        <span>Hate change</span>
-                        <span>Embraces change</span>
-                    </div>
+                    <slider-component
+	                    ng-model="personaData.techUnderstanding"
+	                    question-text="What is the comfort level of your user with technology?"
+                        min-scale-definition="Afraid"
+	                    max-scale-definition="Confident"
+                        show-range-value="true"
+                        range-value-type="%"
+                    ></slider-component>
+
+                    <slider-component
+	                    ng-model="personaData.changeComfort"
+	                    question-text="What is the comfort level of your user with change?"
+	                    min-scale-definition="Hates Change"
+	                    max-scale-definition="Embraces Change"
+	                    show-range-value="true"
+	                    range-value-type="%"
+                    ></slider-component>
                 </div>
             </div>
         </section>

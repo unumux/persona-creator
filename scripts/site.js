@@ -161,3 +161,33 @@ personasApp.component('personaQuestion', {
         <input type="text" class="text-field" ng-if="$ctrl.isEditing" ng-blur="$ctrl.toggleEditing()" ng-model="$ctrl.ngModel"/>
     `
 });
+
+personasApp.component('sliderComponent', {
+	bindings: {
+		ngModel: '=',
+		questionText: '@',
+		minScaleDefinition: '@',
+		maxScaleDefinition: '@',
+		minSliderValue: '@',
+		maxSliderValue: '@',
+		showRangeValue: '@',
+		rangeValueType: '@',
+		rangeValueDisplayType: '@'
+	},
+	template: `
+		<p>{{$ctrl.questionText}}</p>
+		<div class="range-container" ng-class="$ctrl.rangeValueDisplayType">
+    	<input type="range"
+				class="progress-slider"
+				min="{{$ctrl.minSliderValue}}"
+				max="{{$ctrl.maxSliderValue}}"
+				ng-model="$ctrl.ngModel"
+			/>
+		<span class="range-value" ng-if="$ctrl.showRangeValue == 'true'">{{ $ctrl.ngModel }}{{$ctrl.rangeValueType}}</span>
+        <div class="scale-definition" ng-if="$ctrl.minScaleDefinition || $ctrl.maxScaleDefinition">
+        	<span>{{$ctrl.minScaleDefinition}}</span>
+          <span>{{$ctrl.maxScaleDefinition}}</span>
+        </div>
+  	</div>
+`
+});

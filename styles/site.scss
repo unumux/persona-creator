@@ -16,8 +16,8 @@ $controls-container-bgcolor: rgba(216, 216, 216, .2);
 $header-footer-height: 75px;
 $section-heading-font-size: 18px;
 $section-heading-font-color: #fff;
-$selected-device-highlight: rgba(216,216,216,.3);
-$selected-device-border: rgb(216,216,216);
+$selected-device-highlight: #FBEDCC;
+$selected-device-border: #D7C394;
 $card-bgcolor: #f8f8f8;
 $card-header-bgcolor: rgba(131, 147, 161, 0.1);
 $tech-graph-bar-color: #f1c44f;
@@ -104,6 +104,11 @@ input,
 textarea {
     min-height: $text-area-max-height;
 }
+
+textarea:focus::-webkit-input-placeholder { color:transparent; }
+textarea:focus:-moz-placeholder { color:transparent; } /* FF 4-18 */
+textarea:focus::-moz-placeholder { color:transparent; } /* FF 19+ */
+textarea:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
 
 button {
     border: 0;
@@ -201,6 +206,12 @@ button {
         }
     }
 
+    > header {
+        background-repeat: no-repeat;
+        background-image: url(../images/uxenterprise.png);
+        background-position: center;
+    }
+
     h2 {
         background-color: $header-footer-bgcolor;
         border-radius: 3px;
@@ -290,8 +301,11 @@ button {
     .card {
         background-color: $card-bgcolor !important;
         border-radius: 5px;
+        margin-bottom: 15px;
 
         @media print {
+            margin-bottom: 0;
+
             &:before {
               border-right-color: $card-bgcolor;
             }
@@ -388,11 +402,15 @@ button {
 .character-limit-container {
     font-size: 14px;
     font-weight: normal;
-    float: right;
     margin-right: 15px;
+
+    @media screen and (min-width: $breakpoint-mobile) {
+        float: right;
+    }
 }
 
 .questions {
+
     .text-field {
         background-color: transparent;
         border-width: 0;
@@ -409,11 +427,33 @@ button {
     label {
         cursor: pointer;
         &:after {
-            content: "< Click to edit.";
+            content: url(../images/edit-icon.png);
             display: inline-block;
-            margin-left: 15px;
-            opacity: 0.4;
+            margin-left: 5px;
             font-weight: normal;
+            vertical-align: text-top;
+        }
+
+        @media screen and (min-width: $breakpoint-mobile) {
+            &:after {
+                content: "< Tap to edit.";
+                opacity: 0.4;
+                margin-left: 15px;
+                vertical-align: bottom;
+            }
+        }
+
+        @media screen and (min-width: $breakpoint-tablet) {
+            &:after {
+                content: "< Click to edit.";
+            }
+        }
+
+    }
+
+    @media screen and (max-width: $breakpoint-mobile) {
+        persona-question {
+            display: block;
         }
     }
 }
@@ -452,9 +492,11 @@ button {
 	border-radius: 5px;
     @media(min-width: $breakpoint-tablet) {
         max-width: 575px;
+        min-width: 550px;
     }
 
     @media print {
+        //min-width: 4.75in;
         &:before {
           border-right-color: $card-bgcolor;
         }
@@ -464,16 +506,17 @@ button {
         float: left;
         border-radius: 5px;
         margin-right: 15px;
-        width: 250px;
-
-        @media print {
-            margin-right: 10px;
-            width: 2in;
-        }
+        width: 100%;
 
         @media (min-width: $breakpoint-mobile), print {
             border-top-right-radius: 0px;
             border-bottom-right-radius: 0px;
+            width: 250px;
+        }
+
+        @media print {
+            margin-right: 10px;
+            width: 2in;
         }
 	}
 
@@ -522,6 +565,7 @@ button {
             font-weight: normal;
             padding: 5px;
             margin: 0;
+            border-bottom: 1px solid transparent;
         }
     }
 }
@@ -561,6 +605,161 @@ button {
       }
   }
 }
+
+//  Slider Component //
+
+$range-handle-height: 32px;
+$range-handle-width: 32px;
+$range-handle-border-radius: 50%;
+$webkit-handle-top-offset: -13px;
+
+slider-component {
+    display: inline-block;
+    width: 100%;
+
+    > * {
+        padding: 0;
+        margin: 0;
+    }
+
+    input[type="range"] {
+        background-color: transparent;
+        box-shadow: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+    }
+
+    span + span {
+        float: right;
+    }
+
+    &:after {
+        content: ".";
+        visibility: hidden;
+        display: block;
+        height: 0;
+        clear: both;
+    }
+
+    .range-container {
+        padding-top: $range-handle-height;
+        padding-left: 0;
+        padding-right: 15px;
+        position: relative;
+    }
+
+    .range-value {
+        position: absolute;
+        right: -15px;
+        top: calc(#{$range-handle-height} - 5px);
+        font-size: 14px;
+    }
+
+    .scale-definition {
+        margin-top: 15px;
+    }
+
+    @media(max-width: $breakpoint-mobile) {
+        .range-container {
+            padding-right: 30px;
+        }
+
+        .range-value {
+            right: 0;
+        }
+
+        .scale-definition {
+            margin-top: $range-handle-height;
+        }
+    }
+}
+
+
+
+input[type=range] {
+    -webkit-appearance: none;
+    width: 100%;
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    cursor: pointer;
+    animate: 0.2s;
+    height: 8px;
+    background: #1f3340;
+    border-radius: 5px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    height: calc(#{$range-handle-height} * 2);
+    width: calc(#{$range-handle-width} * 2);
+    border-radius: $range-handle-border-radius;
+    background: #f5a623;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: calc(#{$webkit-handle-top-offset} * 2 - 3px);
+}
+
+@media(min-width: $breakpoint-mobile) {
+    input[type=range]::-webkit-slider-thumb {
+        height: $range-handle-height;
+        width: $range-handle-width;
+        margin-top: $webkit-handle-top-offset;
+    }
+}
+
+input[type=range]::-moz-range-track {
+    width: 100%;
+    cursor: pointer;
+    animate: 0.2s;
+    height: 8px;
+    background: #1f3340;
+    border-radius: 5px;
+}
+
+input[type=range]::-moz-range-thumb {
+    height: $range-handle-height;
+    width: $range-handle-width;
+    border-radius: $range-handle-border-radius;
+    background: #f5a623;
+    cursor: pointer;
+}
+
+input[type=range]::-ms-track {
+    width: 100%;
+    cursor: pointer;
+    animate: 0.2s;
+    background: transparent;
+    border-color: transparent;
+    border-width: 16px 0;
+    color: transparent;
+}
+
+input[type=range]::-ms-fill-lower {
+    background: #1f3340;
+    border-radius: 50px;
+}
+
+input[type=range]::-ms-fill-upper {
+    background: #1f3340;
+    border-radius: 50%;
+}
+
+input[type=range]::-ms-thumb {
+    height: $range-handle-height;
+    width: $range-handle-width;
+    border-radius: $range-handle-border-radius;
+    background: #f5a623;
+    cursor: pointer;
+}
+
+
+// End Slider Component //
 
 // PRINT //
 
