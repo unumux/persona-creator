@@ -8,10 +8,21 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet" type="text/css">
 </head>
 <body ng-controller="AppController as ctrl">
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-K2TWFB"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-K2TWFB');</script>
+<!-- End Google Tag Manager -->
     <main>
     <section class="persona-controls-container">
-        <header></header>
-        <p>You’ve read about the importance of being courageous, rebellious and imaginative. These are all vital ingredients in an effective advertising campaign. However, they must be tempered with the most important ingredient of all.</p>
+        <header>
+            <h1 class="screen-reader">Enterprise User Experience: Persona Builder</h1>
+        </header>
+        <p>With all the work that goes into developing a persona, why not make it look beautiful?  Now you can!  Answer the questions below, then generate your persona. It’s that simple!</p>
         <section class="personal-info">
             <h2>Step 1: Give your persona some personality!</h2>
             <div class="flex-row">
@@ -100,7 +111,7 @@
                     </ul>
                 </div>
                 <div class="card sites-used">
-                    <header>What site(s) do your users go to during a typical workday?</header>
+                    <header>What site(s) do your users visit during a typical workday?</header>
                     <ul>
                         <li><input type="text" id="sitesUsed1" ng-model="personaData.sitesUsed.site1" maxlength="30"></li>
                         <li><input type="text" id="sitesUsed2" ng-model="personaData.sitesUsed.site2" maxlength="30"></li>
@@ -121,8 +132,8 @@
                     <slider-component
 	                    ng-model="personaData.changeComfort"
 	                    question-text="What is the comfort level of your user with change?"
-	                    min-scale-definition="Hates Change"
-	                    max-scale-definition="Embraces Change"
+	                    min-scale-definition="Hates"
+	                    max-scale-definition="Embraces"
 	                    show-range-value="true"
 	                    range-value-type="%"
                     ></slider-component>
@@ -215,7 +226,7 @@
     <button class="reset" ng-click="resetPersona()" ng-if="!isViewing">Reset</button>
     <button class="generate right" ng-click="toggleClass('move'); togglePersonaView(); getRandomImage()" ng-if="!isViewing">Generate Persona</button>
     <button class="edit" ng-click="toggleClass(); togglePersonaView()" ng-if="isViewing">Edit</button>
-    <button class="print html right" ng-click="printPersona()" ng-if="isViewing">Print</button>
+    <button class="print right" ng-click="printPersona()" ng-if="isViewing">Print</button>
 </footer>
 
 

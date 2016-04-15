@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="43px" height="17px" viewBox="0 0 43 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.6.1 (26313) - http://www.bohemiancoding.com/sketch -->
+    <title>edit-icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="final-version" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="iPhone-6" transform="translate(-202.000000, -1316.000000)">
+            <g id="edit-icon" transform="translate(202.000000, 1315.000000)">
+                <g id="Group" transform="translate(0.000000, 1.000000)">
+                    <rect id="Rectangle-144" fill="#E0832E" x="0" y="0" width="18" height="16.6153846" rx="2"></rect>
+                    <g id="1459896788_edit" transform="translate(2.076923, 2.076923)">
+                        <g id="svg2">
+                            <g id="background">
+                                <rect id="Rectangle-path" x="0" y="0" width="12.4615385" height="12.4615385"></rect>
+                            </g>
+                            <g id="edit" transform="translate(1.557692, 0.000000)" fill="#FFFFFF">
+                                <path d="M2.33653846,10.9038462 L0,10.9038462 L0,8.56730769 L2.33653846,10.9038462 Z" id="Shape"></path>
+                                <rect id="Rectangle-path" transform="translate(5.841562, 5.062638) rotate(135.000000) translate(-5.841562, -5.062638) " x="0.33439338" y="3.41052612" width="11.0143367" height="3.30422312"></rect>
+                                <path d="M0,12.4615385 L0,11.6826923 L8.56730769,11.6826923 L8.56730769,12.4615385 L0,12.4615385 L0,12.4615385 Z" id="Shape"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+                <text id="Edit" font-family="SourceSansPro-Regular, Source Sans Pro" font-size="14" font-weight="normal" fill="#E0832E">
+                    <tspan x="20" y="14">Edit</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

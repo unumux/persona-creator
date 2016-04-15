@@ -21,8 +21,8 @@ maxCharacterCounts: {
     "quote": 150,
     "questions": 300
 },
-techUnderstanding:0,
-changeComfort:0,
+techUnderstanding:50,
+changeComfort:50,
 };
 
 var storedIndex;

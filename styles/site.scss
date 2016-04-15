@@ -68,12 +68,6 @@ body {
                 height: calc(#{$header-footer-height} + 25px);
             }
     }
-
-    @media(min-width: $breakpoint-mobile) {
-        input[type='text']:focus ~ footer {
-            background-color: red;
-        }
-    }
 }
 
 main {
@@ -115,6 +109,7 @@ textarea {
 textarea:focus::-webkit-input-placeholder { color:transparent; }
 textarea:focus:-moz-placeholder { color:transparent; } /* FF 4-18 */
 textarea:focus::-moz-placeholder { color:transparent; } /* FF 19+ */
+textarea:-ms-input-placeholder { color: rgba(74, 74, 74, .4);}
 textarea:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
 
 button {
@@ -124,6 +119,13 @@ button {
     padding: 12px 25px;
     text-transform: capitalize;
     padding: 6px 24px;
+
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* IE/Edge */
+    user-select: none;
 
     @media(min-width: $breakpoint-mobile) {
         font-size: 24px;
@@ -146,6 +148,11 @@ button {
 }
 
 // Classes //
+
+.screen-reader {
+    display: none;
+}
+
 @media screen and (min-width: $breakpoint-mobile), print {
 
     .flex-row, .flex-column {
@@ -215,7 +222,7 @@ button {
 
     > header {
         background-repeat: no-repeat;
-        background-image: url(../images/uxenterprise.png);
+        background-image: url(../images/uxenterprise.svg);
         background-position: center;
     }
 
@@ -373,9 +380,11 @@ button {
         background-color: transparent;
         margin-bottom:10px;
         width: 70%;
+        transition: background-color .25s;
 
         &:focus {
             outline: none;
+            background-color: rgba($tech-graph-bar-color, .2);
         }
 
          > * {
@@ -384,9 +393,11 @@ button {
              background-color: transparent;
              margin: 0;
              width: 100%;
+             transition: background-color .5s;
 
              &:focus {
                  outline: none;
+                 background-color: rgba($tech-graph-bar-color, .2);
              }
          }
      }
@@ -434,7 +445,7 @@ button {
     label {
         cursor: pointer;
         &:after {
-            content: url(../images/edit-icon.png);
+            content: url(../images/edit-icon.svg);
             display: inline-block;
             margin-left: 5px;
             font-weight: normal;
@@ -473,15 +484,28 @@ button {
         -khtml-user-select: none;    // Konqueror //
         -moz-user-select: none;      // Firefox //
         -ms-user-select: none;       // IE/Edge //
+        cursor: pointer;
     }
 
     input[type='checkbox'] {
-        display: none;
+        //display: none;
+        height: 0;
+        width: 0;
+        margin: 0;
+        padding: 0;
     }
 
     input[type='checkbox']:checked + label {
         background-color: $selected-device-highlight;
         border-bottom: 1px solid $selected-device-border;
+    }
+
+    input[type='checkbox']:focus:checked + label {
+        background-color: rgba($tech-graph-bar-color, .75);
+    }
+
+    input[type='checkbox']:focus + label {
+        background-color: rgba($tech-graph-bar-color, .5);
     }
 }
 
@@ -578,7 +602,7 @@ button {
 }
 
 .bar-graph {
-    margin: 15px;
+    margin: 15px 0;
     padding: 12px;
     font-size: 34px;
 }
@@ -712,14 +736,11 @@ input[type=range]::-webkit-slider-thumb {
     cursor: pointer;
     -webkit-appearance: none;
     margin-top: $webkit-handle-top-offset;
+    transition: box-shadow .5s;
 }
 
-@media(min-width: $breakpoint-mobile) {
-    input[type=range]::-webkit-slider-thumb {
-        height: $range-handle-height;
-        width: $range-handle-width;
-        margin-top: $webkit-handle-top-offset;
-    }
+input[type=range]:focus::-webkit-slider-thumb {
+    box-shadow: 0px 0px 0px 5px rgba(255, 204, 119, .5);
 }
 
 input[type=range]::-moz-range-track {
@@ -765,6 +786,11 @@ input[type=range]::-ms-thumb {
     border-radius: $range-handle-border-radius;
     background: #f5a623;
     cursor: pointer;
+    transition: box-shadow .5s;
+}
+
+input[type=range]:focus::-ms-thumb {
+    box-shadow: 0px 0px 0px 5px rgba(255, 204, 119, .5);
 }
 
 
