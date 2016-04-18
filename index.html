@@ -231,6 +231,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </div>
             <div class="card graph">
                 <p>What is the comfort level of your user with tech?</p>
+                <div class="bar-graph-container">
+                    <div class="bar-graph tech-graph" ng-style="{ width: personaData.techUnderstanding + '%' || '0%' }"></div>
+                    <span>{{personaData.techUnderstanding}}%</span>
+                </div>
                 <p>What is the comfort level of your user with change?</p>
                 <div class="bar-graph-container">
                     <div class="bar-graph change-graph" ng-style="{ width: personaData.changeComfort + '%' || '0%' }"></div>
