@@ -222,8 +222,8 @@ button {
 
     > header {
         background-repeat: no-repeat;
-        background-image: url(../images/uxenterprise.svg);
         background-position: center;
+        text-align: center;
     }
 
     h2 {
@@ -365,6 +365,11 @@ button {
 
 .card {
     padding: 5px 15px;
+}
+
+.return-home {
+    display: inline-block;
+    margin-top: -6px;
 }
 
 .personal-info {
