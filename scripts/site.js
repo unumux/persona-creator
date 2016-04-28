@@ -77,9 +77,11 @@ function filterJsonData (base, data, gender) {
 	var min = 0;
 	var randomIndex = Math.floor(Math.random() * (max - min + 1)) + min;
 
-	while (storedIndex === randomIndex) {
-		randomIndex = Math.floor(Math.random() * (max - min + 1)) + min;
-	}
+    if(data.length > 1) {
+	       while (storedIndex === randomIndex) {
+		      randomIndex = Math.floor(Math.random() * (max - min + 1)) + min;
+	   }
+    }
 
 	storedIndex = randomIndex;
     var obj = data[randomIndex];
